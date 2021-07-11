@@ -1,0 +1,17 @@
+CC		= clang++
+CFLAGS	= -Wall -Werror -Wextra -std=c++98
+NAME	= <EXE_NAME>
+SRCS	= main.cpp \ {% for class in classes %} 
+		{{ class }} \{% endfor %}
+
+all: $(NAME)
+
+$(NAME): $(SRCS)
+	$(CC) $(CFLAGS) -o $(NAME) $(SRCS)
+
+clean:
+	rm -f $(NAME)
+
+fclean: clean
+
+re: fclean all

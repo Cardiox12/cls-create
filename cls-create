@@ -1,0 +1,28 @@
+#!/usr/bin/python3
+import os
+import sys
+import jinja2
+
+script_path = os.path.dirname(os.path.realpath(__file__))
+assets_dir = "assets"
+hpp_file = os.path.join(script_path, assets_dir, "Class.hpp.jinja2")
+cpp_file = os.path.join(script_path, assets_dir, "Class.cpp.jinja2")
+mkf_file = os.path.join(script_path, assets_dir, "Makefile.jinja2")
+
+templates = [(hpp_file, ".hpp"), (cpp_file, ".cpp")]
+
+for arg in sys.argv[1:]:
+    classname = arg.capitalize()
+
+    for template in templates:
+        with open(template[0], "r") as f_template:
+            renderer = jinja2.Template(f_template.read())
+
+            with open(f"{classname}{template[1]}", "w") as f:
+                f.write(renderer.render(classname=classname))
+
+with open(mkf_file, "r") as mkf_f:
+    args = [arg.capitalize() + ".cpp" for arg in sys.argv[1:]]
+    mkf_template = jinja2.Template(mkf_f.read())
+    with open("Makefile", "w") as f:
+        f.write(mkf_template.render(classes=args))

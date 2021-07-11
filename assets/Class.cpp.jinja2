@@ -1,0 +1,18 @@
+#include "{{ classname }}.hpp"
+
+{{ classname }}::{{ classname }}() {
+
+}
+
+{{ classname }}::{{ classname }}(const {{ classname }} &src) {
+
+}
+
+{{ classname }}::~{{ classname }}() {};
+
+{{ classname }}&
+{{ classname }}::operator=(const {{ classname }} &src) {
+    if (this != &src)
+        *this = src;
+    return (*this);
+}
