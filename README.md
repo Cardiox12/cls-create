@@ -1,6 +1,6 @@
 # cls-create
 
-`cls-create` is a util program to generate [canonical](https://www.francescmm.com/orthodox-canonical-class-form/) C++ classes.
+`cls-create` is a program to generate [canonical](https://www.francescmm.com/orthodox-canonical-class-form/) C++ classes.
 
 ### Installation
 
